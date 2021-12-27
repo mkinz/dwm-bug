@@ -1,5 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
+#include <X11/XF86keysym.h>
+
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 5;        /* gaps between windows */
@@ -77,6 +79,10 @@ static const char *termcmd[]  = { "kitty", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 
+/*audio controls*/
+static const char *mutecmd[] = { "pactl", "set-sink-mute", "0", "toggle", NULL };
+static const char *volupcmd[] = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
+static const char *voldowncmd[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -120,6 +126,14 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,		XK_q,      quit,           {0} },
+	    { 0,                            XF86XK_AudioMute, spawn,   {.v = mutecmd } },
+    { 0,                            XF86XK_AudioLowerVolume,   spawn, {.v = voldowncmd } },
+    { 0,                            XF86XK_AudioRaiseVolume,   spawn, {.v = volupcmd } },
+    { 0,                            XF86XK_AudioPlay, spawn,   SHCMD("playerctl play-pause") },
+    { 0,                            XF86XK_AudioPause,spawn,   SHCMD("playerctl play-pause") },
+    { 0,                            XF86XK_AudioPrev, spawn,   SHCMD("playerctl previous") },
+    { 0,                            XF86XK_AudioNext, spawn,   SHCMD("playerctl next") },
+    { 0,                            XF86XK_AudioStop, spawn,   SHCMD("playerctl stop") },
 };
 
 /* button definitions */
