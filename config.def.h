@@ -81,6 +81,7 @@ static const char *mutecmd[] = { "pactl", "set-sink-mute", "0", "toggle", NULL }
 static const char *volupcmd[] = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
 static const char *voldowncmd[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
 
+#include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
@@ -88,8 +89,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
         { MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
+	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY, 	                XK_space,  zoom,           {0} },
+	{ MODKEY|ShiftMask,             XK_space,  zoom,           {0} },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_s,      incnmaster,     {.i = +1 } },
 	{ MODKEY,		        XK_q,      killclient,     {0} },
@@ -100,7 +103,7 @@ static Key keys[] = {
     	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },  
 	{ MODKEY|ShiftMask,             XK_f,  	   togglefloating, {0} },
 	{ MODKEY|ShiftMask,             XK_Tab,	   setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  spawn,          {.v = dmenucmd } },
+	{ MODKEY,	                XK_space,  spawn,          {.v = dmenucmd } },
 	{ MODKEY,			XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
