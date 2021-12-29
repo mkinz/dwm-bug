@@ -76,7 +76,8 @@ static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 
 /*audio controls*/
-static const char *mutecmd[] = { "pactl", "set-sink-mute", "0", "toggle", NULL };
+//static const char *mutecmd[] = { "amixer", "set", "Master", "toggle", NULL };
+static const char *mutecmd[] = { "amixer", "-q", "set", "Master", "toggle", NULL };
 static const char *volupcmd[] = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
 static const char *voldowncmd[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
 
@@ -101,10 +102,12 @@ static Key keys[] = {
     { MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },    
     { MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },  
 	{ MODKEY|ShiftMask,             XK_f,  	   togglefloating, {0} },
-	{ MODKEY|ShiftMask,             XK_Tab,	   setlayout,      {0} },
+	{ MODKEY|ShiftMask,             XK_backslash,  setlayout,      {0} },
 	{ MODKEY,	                    XK_space,  spawn,          {.v = dmenucmd } },
+    { MODKEY,                       XK_Tab,    shiftviewclients, { .i = +1 } },
+    { MODKEY|ShiftMask,             XK_Tab,    shiftviewclients, { .i = -1 } },
 	{ MODKEY,			            XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
+	{ MODKEY,                       XK_backslash, view,           {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
