@@ -80,6 +80,11 @@ static const char *mutecmd[] = { "amixer", "-q", "set", "Master", "toggle", NULL
 static const char *volupcmd[] = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
 static const char *voldowncmd[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
 
+/*backlight*/
+static const char *brupcmd[] = { "brightnessctl", "set", "10%+", NULL };
+static const char *brdowncmd[] = { "brightnessctl", "set", "10%-", NULL };
+
+
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -132,6 +137,8 @@ static Key keys[] = {
     { 0,                            XF86XK_AudioPrev, spawn,   SHCMD("playerctl previous") },
     { 0,                            XF86XK_AudioNext, spawn,   SHCMD("playerctl next") },
     { 0,                            XF86XK_AudioStop, spawn,   SHCMD("playerctl stop") },
+    { 0,                            XF86XK_MonBrightnessUp, spawn, {.v = brupcmd} },
+    { 0,                            XF86XK_MonBrightnessDown, spawn, {.v = brdowncmd} },
 };
 
 /* button definitions */
