@@ -95,7 +95,7 @@ static Key keys[] = {
     { MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
+	{ MODKEY|ControlMask,           XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  zoom,           {0} },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
@@ -122,7 +122,7 @@ static Key keys[] = {
 	{ MODKEY,			            XK_equal,  setgaps,	   {.i = +1 } },
 	{ MODKEY|ShiftMask,		        XK_equal,  setgaps,	   {.i =  0 } },
 	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
-	{ MODKEY|ControlMask,	        XK_b,      spawn,	       SHCMD("firefox") },
+	{ MODKEY,           	        XK_b,      spawn,	       SHCMD("firefox") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
