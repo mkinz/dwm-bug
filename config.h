@@ -79,6 +79,7 @@ static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34
 static const char *mutecmd[] = { "amixer", "-D", "pulse", "set", "Master", "toggle" };
 static const char *volupcmd[] = { "amixer", "-D", "pulse", "set", "Master", "5%+"  };
 static const char *voldowncmd[] = { "amixer", "-D", "pulse", "set", "Master", "5%-" };
+static const char *micmutecmd[] = { "amixer", "set", "Capture", "toggle" };
 
 /*backlight*/
 static const char *brupcmd[] = { "brightnessctl", "set", "10%+", NULL };
@@ -130,6 +131,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_5,                      4)
 	{ MODKEY|ShiftMask,		        XK_q,      quit,           {0} },
 	{ 0,                            XF86XK_AudioMute, spawn,   {.v = mutecmd } },
+	{ 0,                            XF86XK_AudioMicMute, spawn,   {.v = micmutecmd } },
     { 0,                            XF86XK_AudioLowerVolume,   spawn, {.v = voldowncmd } },
     { 0,                            XF86XK_AudioRaiseVolume,   spawn, {.v = volupcmd } },
     { 0,                            XF86XK_AudioPlay, spawn,   SHCMD("playerctl play-pause") },
