@@ -76,9 +76,9 @@ static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 
 /*audio controls*/
-static const char *mutecmd[] = { "amixer", "-q", "set", "Master", "toggle", NULL };
-static const char *volupcmd[] = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
-static const char *voldowncmd[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
+static const char *mutecmd[] = { "amixer", "-D", "pulse", "set", "Master", "toggle" };
+static const char *volupcmd[] = { "amixer", "-D", "pulse", "set", "Master", "5%+"  };
+static const char *voldowncmd[] = { "amixer", "-D", "pulse", "set", "Master", "5%-" };
 
 /*backlight*/
 static const char *brupcmd[] = { "brightnessctl", "set", "10%+", NULL };
